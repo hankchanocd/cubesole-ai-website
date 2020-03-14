@@ -31,11 +31,19 @@ function submitForm() {
   var email = $("#email").val();
   var msg_subject = $("#msg_subject").val();
   var message = $("#message").val();
+  var data = {
+    "name": name,
+    "email": email,
+    "msg_subject": msg_subject,
+    "message": message
+  }
+
   $.ajax({
     type: "POST",
     url: "https://sendmail.cubesole.ai/send",
-    data: "name=" + name + "&email=" + email + "&msg_subject=" +
-      msg_subject + "&message=" + message,
+    crossDomain: true,
+    dataType: "json",
+    data: JSON.stringify(data),
     success: function(text) {
       if (text == "success") {
         formSuccess();
