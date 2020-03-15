@@ -44,13 +44,12 @@ function submitForm() {
     crossDomain: true,
     dataType: "json",
     data: JSON.stringify(data),
-    success: function(text) {
-      if (text == "success") {
-        formSuccess();
-      } else {
-        formError();
-        submitMSG(false, text);
-      }
+    success: function(response) {
+      formSuccess();
+    },
+    error: function(response) {
+      formError();
+      submitMSG(false, 'Submit Failed');
     }
   });
 }
